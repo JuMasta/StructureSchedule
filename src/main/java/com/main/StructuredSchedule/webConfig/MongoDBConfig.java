@@ -22,7 +22,7 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
 
 	@Override
 	public MongoClient mongoClient() {
-		return  MongoClients.create("mongodb://ec2-18-189-189-212.us-east-2.compute.amazonaws.com:27017");
+		return  MongoClients.create("mongodb://ec2-18-189-189-212.us-east-2.compute.amazonaws.com:27017") ;
 	}
 	
 	@Bean
