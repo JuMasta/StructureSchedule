@@ -58,24 +58,23 @@ public class AuthenticateRestController {
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 	
             
-//            user = userServiceImpl.findByEmail(user.getEmail());
+            user = userServiceImpl.findByEmail(user.getEmail());
            
-//            
-//            HttpHeaders responseHeaders = new HttpHeaders();
-//        	EntityModel<User> entityModel = new EntityModel<User>(user);
-//        	logger.warn(user.getEmail() + 66);
-//             UserType userType = user.getUserType();
-//            
-//             if(userType == UserType.PRODUCER)
-//             {
-//            	 entityModel.add(configLinks.getUserProducerLinks(user));
-//
-//             }
-//             else if(userType == UserType.CONSUMER) {
-//            	 entityModel.add(configLinks.getUserСonsumerLinks(user)); 	
-//             }
-//             logger.warn(user.getEmail() + 66);
-//    
+            
+            HttpHeaders responseHeaders = new HttpHeaders();
+        	EntityModel<User> entityModel = new EntityModel<User>(user);
+             UserType userType = user.getUserType();
+            
+             if(userType == UserType.PRODUCER)
+             {
+            	 entityModel.add(configLinks.getUserProducerLinks(user));
+
+             }
+             else if(userType == UserType.CONSUMER) {
+            	 entityModel.add(configLinks.getUserСonsumerLinks(user)); 	
+             }
+             
+    
             	
               
              
@@ -83,8 +82,8 @@ public class AuthenticateRestController {
         
             	
             
-//            
-//            responseHeaders.setBearerAuth(jwtUtil.generateToken(user.getEmail()));
+           
+            responseHeaders.setBearerAuth(jwtUtil.generateToken(user.getEmail()));
             return new ResponseEntity<String>("Success" , HttpStatus.OK);
             
         } catch (Exception ex) {
