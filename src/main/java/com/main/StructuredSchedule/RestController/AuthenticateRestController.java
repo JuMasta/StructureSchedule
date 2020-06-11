@@ -84,7 +84,7 @@ public class AuthenticateRestController {
             
            
             responseHeaders.setBearerAuth(jwtUtil.generateToken(user.getEmail()));
-            return new ResponseEntity<String>("Success" , HttpStatus.OK);
+            return new ResponseEntity<EntityModel<User>>(entityModel,responseHeaders, HttpStatus.OK);
             
         } catch (Exception ex) {
         	logger.warn(ex.getMessage());
