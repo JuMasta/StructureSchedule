@@ -58,21 +58,24 @@ public class AuthenticateRestController {
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 	
             
-            user = userServiceImpl.findByEmail(user.getEmail());
-            HttpHeaders responseHeaders = new HttpHeaders();
-        	EntityModel<User> entityModel = new EntityModel<User>(user);
-            
-             UserType userType = user.getUserType();
-            
-             if(userType == UserType.PRODUCER)
-             {
-            	 entityModel.add(configLinks.getUserProducerLinks(user));
-
-             }
-             else if(userType == UserType.CONSUMER) {
-            	 entityModel.add(configLinks.getUserСonsumerLinks(user)); 	
-             }
-    
+//            user = userServiceImpl.findByEmail(user.getEmail());
+           
+//            
+//            HttpHeaders responseHeaders = new HttpHeaders();
+//        	EntityModel<User> entityModel = new EntityModel<User>(user);
+//        	logger.warn(user.getEmail() + 66);
+//             UserType userType = user.getUserType();
+//            
+//             if(userType == UserType.PRODUCER)
+//             {
+//            	 entityModel.add(configLinks.getUserProducerLinks(user));
+//
+//             }
+//             else if(userType == UserType.CONSUMER) {
+//            	 entityModel.add(configLinks.getUserСonsumerLinks(user)); 	
+//             }
+//             logger.warn(user.getEmail() + 66);
+//    
             	
               
              
@@ -80,13 +83,13 @@ public class AuthenticateRestController {
         
             	
             
-            
-            responseHeaders.setBearerAuth(jwtUtil.generateToken(user.getEmail()));
-            return new ResponseEntity<EntityModel<User>>(entityModel,responseHeaders , HttpStatus.OK);
+//            
+//            responseHeaders.setBearerAuth(jwtUtil.generateToken(user.getEmail()));
+            return new ResponseEntity<String>("Success" , HttpStatus.OK);
             
         } catch (Exception ex) {
-        	logger.warn("Exception");
-        	return new ResponseEntity<String>( ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        	logger.warn(ex.getMessage());
+        	return new ResponseEntity<String>( "Ошибка",HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
        
