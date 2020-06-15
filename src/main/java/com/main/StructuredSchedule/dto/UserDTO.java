@@ -1,15 +1,24 @@
 package com.main.StructuredSchedule.dto;
 
+import com.main.StructuredSchedule.models.User;
+
 public class UserDTO {
 
+	private String id;
 	
 	private  String email;
 	
 	private String name;
 	
-	private String oldPassword;
-	
 	private String password;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
 		return email;
@@ -19,22 +28,6 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getOldPassword() {
-		return oldPassword;
-	}
-
-	public void setOldPassword(String oldPassword) {
-		this.oldPassword = oldPassword;
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -43,4 +36,29 @@ public class UserDTO {
 		this.name = name;
 	}
 	
+	public UserDTO(User user)
+	{
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.name = user.getName();
+		
+		
+	}
+	public UserDTO() {
+		
+		
+	}
+
+	public String getPassword() {
+		
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+		
+	}
+
 }
+	
+

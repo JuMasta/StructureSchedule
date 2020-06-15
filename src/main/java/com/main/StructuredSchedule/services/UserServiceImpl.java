@@ -45,5 +45,19 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
+	
+	
+	@Override
+	public boolean activateUser(String code) {
+		User user = userRepository.findByActivationCode(code);
+		if (user == null)
+			return false;
+		user.setActivationCod(null);
+		userRepository.save(user);
+		
+		
+		return true;
+		
+	}
 
 }

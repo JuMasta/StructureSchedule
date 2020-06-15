@@ -24,10 +24,20 @@ public class User {
 	
 	private String name;
 	
+	private String activationCode;
+	
+	public String getActivationCod() {
+		return activationCode;
+	}
+
+	public void setActivationCod(String activationCod) {
+		this.activationCode = activationCod;
+	}
+
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +46,11 @@ public class ConfigUserObject  {
 		user.setRecords(new ArrayList<Record>());
 		user.setRoles(new HashSet<>(Arrays.asList(role)));
 		user.setUserType(userType);
-		user.setEmail(userDTO.getEmail());
-		user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+		user.setEmail(userDTO.getEmail());		
 		user.setName(userDTO.getName());
+		user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+		Random random = new Random();
+		user.setActivationCod(String.format("%04d", random.nextInt(10000)));
 		
 		return user;
 		

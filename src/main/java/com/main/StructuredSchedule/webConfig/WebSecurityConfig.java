@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/user/createUser**","/authenticate")
+		http.csrf().disable().authorizeRequests().antMatchers("/user/createUser**","/authenticate","/user/activate/*")
         .permitAll().antMatchers("/record/**").hasAuthority("Producer")
         .anyRequest().authenticated()
         .and().exceptionHandling().and().sessionManagement()

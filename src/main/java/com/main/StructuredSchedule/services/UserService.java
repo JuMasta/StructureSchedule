@@ -14,6 +14,10 @@ public interface UserService {
 	public User findById(String id);
 	
 	public User findByEmail(String email);
+
+	
+
+	boolean activateUser(String code);
 	
 
 }

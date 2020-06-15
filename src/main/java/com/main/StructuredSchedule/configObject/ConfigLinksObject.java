@@ -16,6 +16,7 @@ import com.main.StructuredSchedule.RestController.AuthenticateRestController;
 import com.main.StructuredSchedule.RestController.RecordRestController;
 import com.main.StructuredSchedule.RestController.RequestRestController;
 import com.main.StructuredSchedule.RestController.UserRestController;
+import com.main.StructuredSchedule.dto.UserDTO;
 import com.main.StructuredSchedule.models.Record;
 import com.main.StructuredSchedule.models.User;
 
@@ -57,7 +58,7 @@ public class ConfigLinksObject {
 		
 	}
 	
-	public List<Link> getBeginLinks(User user) throws Exception {
+	public List<Link> getBeginLinks(UserDTO user) throws Exception {
 		
 		List<Link> list = new ArrayList<Link>();
 		list.add(linkTo(methodOn(AuthenticateRestController.class).generateToken(user)).withRel("Аутентификация и авторизация"));		
