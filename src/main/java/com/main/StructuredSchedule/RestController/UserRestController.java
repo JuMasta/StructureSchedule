@@ -85,11 +85,14 @@ public class UserRestController {
 
 	}
 
-	@PostMapping("/activate/{uri}")
-	public ResponseEntity<?> activateUser(@PathVariable String uri,HttpServletRequest request) throws Exception {
+	@PostMapping("/activate")
+	public ResponseEntity<?> activateUser(HttpServletRequest request) throws Exception {
 		String code = request.getHeader("code");
+		String uuid = request.getHeader("UUID");
+		if (code == null || uuid == null)
+			return new ResponseEntity<String>("Некорректный запрос", HttpStatus.BAD_REQUEST);
 		logger.info(code);
-		boolean isActivated = userServiceImpl.activateUser(uri,code);
+		boolean isActivated = userServiceImpl.activateUser(uuid,code);
 		if (isActivated) {
 			return new ResponseEntity<String>("Пользователь успешно активирован", HttpStatus.OK);
 
