@@ -18,7 +18,7 @@ public class User {
 	private String id;
 	
 	@Indexed(unique = true, direction = IndexDirection.DESCENDING)
-	private  String phonNumber;
+	private  String phoneNumber;
 	
 	private String password;
 	
@@ -86,7 +86,7 @@ public class User {
 	public User(String phoneNumber,String password) {
 		super();
 		
-		this.phonNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 		this.password = password;
 	}
 	
@@ -121,11 +121,11 @@ public class User {
 	}
 
 	public String getPhoneNumber() {
-		return phonNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phonNumber) {
-		this.phonNumber = phonNumber;
+		this.phoneNumber = phonNumber;
 	}
 
 }

@@ -40,13 +40,15 @@ public class AuthenticateRestController {
 		try {
 
 			User user = userServiceImpl.findByPhoneNumber(userDTO.getPhoneNumber());
-			if(user != null)
+			
+			if(user == null)
 			{
+				return new ResponseEntity<String>("Пользователь не найден", HttpStatus.FORBIDDEN);
+			}
 			if (user.getActivationCode() != null) {
 
 				return new ResponseEntity<String>("Пользователь не акитвирован", HttpStatus.FORBIDDEN);
 
-			}
 			}
 			authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getPhoneNumber(), userDTO.getPassword()));
@@ -57,7 +59,7 @@ public class AuthenticateRestController {
 
 		} catch (Exception ex) {
 			logger.warn(ex.getMessage());
-			return new ResponseEntity<String>("Ошибка", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
