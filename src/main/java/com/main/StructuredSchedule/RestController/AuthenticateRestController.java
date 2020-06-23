@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.main.StructuredSchedule.Enums.UserType;
-import com.main.StructuredSchedule.configObject.ConfigLinksObject;
 import com.main.StructuredSchedule.dto.UserDTO;
 import com.main.StructuredSchedule.models.User;
 import com.main.StructuredSchedule.services.UserServiceImpl;
@@ -25,8 +24,7 @@ public class AuthenticateRestController {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	@Autowired
-	ConfigLinksObject configLinks;
+
 
 	@Autowired
 	UserServiceImpl userServiceImpl;
@@ -41,31 +39,21 @@ public class AuthenticateRestController {
 
 		try {
 
-			User user = userServiceImpl.findByEmail(userDTO.getEmail());
+			User user = userServiceImpl.findByPhoneNumber(userDTO.getPhoneNumber());
 			if(user != null)
 			{
-			if (user.getActivationCod() != null) {
+			if (user.getActivationCode() != null) {
 
 				return new ResponseEntity<String>("Пользователь не акитвирован", HttpStatus.FORBIDDEN);
 
 			}
 			}
 			authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
+					.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getPhoneNumber(), userDTO.getPassword()));
 
 			HttpHeaders responseHeaders = new HttpHeaders();
-			EntityModel<UserDTO> entityModel = new EntityModel<UserDTO>(new UserDTO(user));
-			UserType userType = user.getUserType();
-
-			if (userType == UserType.PRODUCER) {
-				entityModel.add(configLinks.getUserProducerLinks(user));
-
-			} else if (userType == UserType.CONSUMER) {
-				entityModel.add(configLinks.getUserСonsumerLinks(user));
-			}
-
-			responseHeaders.setBearerAuth(jwtUtil.generateToken(userDTO.getEmail()));
-			return new ResponseEntity<EntityModel<UserDTO>>(entityModel, responseHeaders, HttpStatus.OK);
+			responseHeaders.setBearerAuth(jwtUtil.generateToken(userDTO.getPhoneNumber()));
+			return new ResponseEntity<>(responseHeaders, HttpStatus.OK);
 
 		} catch (Exception ex) {
 			logger.warn(ex.getMessage());

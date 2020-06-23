@@ -36,7 +36,7 @@ public class ConfigRecordObject {
 		Record record = new Record();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();		
-		record.setUserProducer(userService.findByEmail(currentPrincipalName));
+		record.setUserProducer(userService.findByPhoneNumber(currentPrincipalName));
 		record.setUserConsumer(userService.findById(recordDTO.getIdUserConsumer()));
 		record.setDateBegin(new Date(recordDTO.getDateBeginInMiliSeconds()));
 		record.setDateEnd(new Date(recordDTO.getDateEndInMiliSeconds()));

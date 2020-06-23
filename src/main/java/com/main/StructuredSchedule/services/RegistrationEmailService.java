@@ -19,9 +19,9 @@ public class RegistrationEmailService implements MailSenderService {
 	@Override
 	public void sendService(User user) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(user.getEmail());       
+        msg.setTo(user.getPhoneNumber());       
         msg.setSubject("Активация аккаунта");       
-        msg.setText(String.format(message, user.getActivationCod()));    
+        msg.setText(String.format(message, user.getActivationCode()));    
         javaMailSender.send(msg);
 
 	}

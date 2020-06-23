@@ -46,12 +46,13 @@ public class ConfigUserObject  {
 		user.setRecords(new ArrayList<Record>());
 		user.setRoles(new HashSet<>(Arrays.asList(role)));
 		user.setUserType(userType);
-		user.setEmail(userDTO.getEmail());		
+		user.setPhoneNumber(userDTO.getPhoneNumber());		
 		user.setName(userDTO.getName());
 		user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
 		Random random = new Random();
-		user.setActivationCod(String.format("%04d", random.nextInt(10000)));
-		
+		user.setActivationCode(String.format("%04d", random.nextInt(10000)));
+		UUID uuid = UUID.randomUUID();
+		user.setActivationUri(uuid.toString());
 		return user;
 		
 	}
@@ -68,7 +69,7 @@ public class ConfigUserObject  {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();		
-		User user = userService.findByEmail(currentPrincipalName);
+		User user = userService.findByPhoneNumber(currentPrincipalName);
 		if(userDTO.getName() != null)
 			user.setName(userDTO.getName());
 		return user;

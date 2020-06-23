@@ -18,20 +18,31 @@ public class User {
 	private String id;
 	
 	@Indexed(unique = true, direction = IndexDirection.DESCENDING)
-	private  String email;
+	private  String phonNumber;
 	
 	private String password;
 	
+	
 	private String name;
+	
+	private String activationUri;
 	
 	private String activationCode;
 	
-	public String getActivationCod() {
+	public String getActivationCode() {
 		return activationCode;
 	}
 
-	public void setActivationCod(String activationCod) {
-		this.activationCode = activationCod;
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
+
+	public String getActivationUri() {
+		return activationUri;
+	}
+
+	public void setActivationUri(String activationUri) {
+		this.activationUri = activationUri;
 	}
 
 	public String getName() {
@@ -72,10 +83,10 @@ public class User {
 		super();
 	}
 
-	public User(String email,String password) {
+	public User(String phoneNumber,String password) {
 		super();
 		
-		this.email = email;
+		this.phonNumber = phoneNumber;
 		this.password = password;
 	}
 	
@@ -109,12 +120,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getPhoneNumber() {
+		return phonNumber;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPhoneNumber(String phonNumber) {
+		this.phonNumber = phonNumber;
 	}
 
 }

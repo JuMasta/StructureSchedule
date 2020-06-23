@@ -3,6 +3,8 @@ package com.main.StructuredSchedule.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import com.main.StructuredSchedule.repository.UsersRepository;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	
+	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	UsersRepository userRepository;
 
@@ -37,8 +39,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByEmail(String email) {
-		return userRepository.findByemail(email);
+	public User findByPhoneNumber(String phoneNumber) {
+		return userRepository.findByphoneNumber(phoneNumber);
 	}
 
 	public List<User> findAll() {
@@ -48,11 +50,14 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public boolean activateUser(String code) {
-		User user = userRepository.findByActivationCode(code);
+	public boolean activateUser(String uri, String code) {
+		User user = userRepository.findByActivationUri(uri);
 		if (user == null)
 			return false;
-		user.setActivationCod(null);
+		if (!user.getActivationCode().equals(code))
+			return false;
+		user.setActivationCode(null);
+		user.setActivationUri(null);
 		userRepository.save(user);
 		
 		

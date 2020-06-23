@@ -13,11 +13,11 @@ public interface UserService {
 	
 	public User findById(String id);
 	
-	public User findByEmail(String email);
+	public User findByPhoneNumber(String phoneNumber);
 
 	
 
-	boolean activateUser(String code);
+	boolean activateUser(String uri,String code);
 	
 
 }

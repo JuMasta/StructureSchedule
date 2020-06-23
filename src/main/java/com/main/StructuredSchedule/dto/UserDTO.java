@@ -6,7 +6,7 @@ public class UserDTO {
 
 	private String id;
 	
-	private  String email;
+	private  String phoneNumber;
 	
 	private String name;
 	
@@ -20,12 +20,12 @@ public class UserDTO {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getName() {
@@ -39,7 +39,7 @@ public class UserDTO {
 	public UserDTO(User user)
 	{
 		this.id = user.getId();
-		this.email = user.getEmail();
+		this.phoneNumber = user.getPhoneNumber();
 		this.name = user.getName();
 		
 		
